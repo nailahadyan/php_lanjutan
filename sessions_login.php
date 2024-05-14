@@ -2,42 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Exception</title>
+    <title>Sessions</title>
 </head>
 <?php
 session_start();
 
-function loginUser($username, $password) {
-    if ($username === '' || $password === '') {
-        throw new InvalidArgumentException("Username dan password harus diisi.");
-    }
-    if ($password !== '123') {
-        throw new RuntimeException("Password yang dimasukkan salah.");
-    }
-    $_SESSION['username'] = $username;
-}
-
-// Periksa login status
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    try {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        loginUser($username, $password);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if ($username !== '' && $password !== '') {
+        $_SESSION['username'] = $username;
         header("Location: galery.php");
         exit();
-    } catch (InvalidArgumentException $e) {
-        $error_message = $e->getMessage();
-    } catch (RuntimeException $e) {
-        $error_message = $e->getMessage();
+    } else {
+        echo "Invalid username or password";
     }
 }
-?>
 
+if (isset($_SESSION['username'])) {
+}
+?>
 <body>
-    <h2>Login Menggunakan Exception</h2>
-    <?php if (isset($error_message)) { ?>
-        <p>Error: <?php echo $error_message; ?></p>
-    <?php } ?>
+    <h1>Login Menggunakan Sessions</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
