@@ -2,8 +2,8 @@
 $nama = "Nailah Adyan Nurahmah";
 $email = "nailah@example.com";
 
-setcookie("nama", $nama, time() + (60 * 0), "/"); 
-setcookie("email", $email, time() + (60 * 0), "/");
+setcookie("nama", $nama, time() + (60 * 60), "/"); 
+setcookie("email", $email, time() + (60 * 60), "/");
 
 echo "Data identitas Anda telah disimpan dalam cookies.";
 
