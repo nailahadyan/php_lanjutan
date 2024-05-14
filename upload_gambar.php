@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uploadOk = 1;
     $tipeGambar = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Periksa apakah file adalah gambar asli atau palsu
     if(isset($_POST["submit"])) {
         $check = getimagesize($_FILES["gambar"]["tmp_name"]);
         if($check !== false) {
@@ -35,26 +34,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Periksa apakah file sudah ada
     if (file_exists($target_file)) {
         echo "Maaf, file sudah ada.";
         $uploadOk = 0;
     }
 
-    // Periksa ukuran file
     if ($_FILES["gambar"]["size"] > 500000) {
         echo "Maaf, ukuran file Anda terlalu besar.";
         $uploadOk = 0;
     }
 
-    // Izinkan hanya format file tertentu
     if($tipeGambar != "jpg" && $tipeGambar != "png" && $tipeGambar != "jpeg"
     && $tipeGambar != "gif" ) {
         echo "Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.";
         $uploadOk = 0;
     }
 
-    // Coba unggah file jika semua pemeriksaan lolos
     if ($uploadOk == 0) {
         echo "Maaf, file Anda gagal diunggah.";
     } else {
