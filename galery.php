@@ -7,7 +7,7 @@
         .galeri {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px; /* Mengatur jarak antar gambar */
+            gap: 20px; 
         }
         .galeri img {
             width: 100px;
@@ -17,14 +17,13 @@
 </head>
 <body>
 
-<h1>Pink Gallery🧁🫧🩷🩰🌷🐰</h1> <!-- Judul galeri -->
+<h1>Pink Gallery🧁🫧🩷🩰🌷🐰</h1> 
 <div class="galeri">
     <?php
-    // Menampilkan galeri gambar dari folder 'gambar'
-    $fileList = glob('gambar/*'); // Membaca semua file dalam folder 'gambar'
-    foreach ($fileList as $filename) { // Melakukan iterasi pada setiap file
-        if (is_file($filename)) { // Memeriksa apakah itu file dan bukan folder
-            // Menampilkan gambar
+    $fileList = glob('gambar/*'); 
+    foreach ($fileList as $filename) { 
+        if (is_file($filename)) { 
+           
             echo '<img src="'.$filename.'" alt="Image">';
         }
     }
