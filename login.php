@@ -16,7 +16,7 @@
 $name = $email = "";
 $nameErr = $emailErr = "";
 
-// Fungsi untuk membersihkan input
+
 function bersihkan_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -24,7 +24,6 @@ function bersihkan_input($data) {
     return $data;
 }
 
-// Pemeriksaan setiap variabel input apakah diisi dengan benar
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
     if (empty($_POST["username"])) {

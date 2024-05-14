@@ -6,40 +6,36 @@
 </head>
 <body>
     <?php
-    session_start(); // Memulai sesi
+    session_start(); 
 
     function loginUser($username, $password) {
-        // Mengecek apakah username atau password kosong
         if ($username === '' || $password === '') {
             throw new InvalidArgumentException("Username dan password harus diisi.");
         }
-        // Mengecek apakah password yang dimasukkan salah
         if ($password !== '123') {
             throw new RuntimeException("Password yang dimasukkan salah.");
         }
-        // Jika login sukses, set username ke dalam sesi
         $_SESSION['username'] = $username;
     }
 
-    // Periksa login status ketika form login disubmit
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            loginUser($username, $password); // Memanggil fungsi loginUser
-            header("Location: galery.php"); // Mengarahkan ke halaman galeri
+            loginUser($username, $password); 
+            header("Location: galery.php"); 
             exit();
         } catch (InvalidArgumentException $e) {
-            $error_message = $e->getMessage(); // Menangkap dan menyimpan pesan error
+            $error_message = $e->getMessage(); 
         } catch (RuntimeException $e) {
-            $error_message = $e->getMessage(); // Menangkap dan menyimpan pesan error
+            $error_message = $e->getMessage(); 
         }
     }
     ?>
 
     <h1>Login Menggunakan Exception</h1>
     <?php if (isset($error_message)) { ?>
-        <p>Error: <?php echo $error_message; ?></p> <!-- Menampilkan pesan error jika ada -->
+        <p>Error: <?php echo $error_message; ?></p> 
     <?php } ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="username">Username:</label>
